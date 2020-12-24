@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { Layout } from '../components/layout'
 import { UserType } from '../mockDataBase'
 
-const Users = ( {usersList}: {usersList: Array<UserType>} ) => {
+const Users = ( {usersList}: {usersList: Array<UserType> | null} ) => {
     let [users, setUsers] = useState<Array<UserType> | null>(usersList)
 
     useEffect(() => {

@@ -3,9 +3,8 @@ import { users } from '../../mockDataBase'
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'GET') {
-    let userInfo = users.find( u => u.id === req.query.id )
-    if (userInfo) userInfo.status = 'OK'
-    else userInfo = { status: 'ERROR' }
+    let userInfo = users[0]
+    userInfo.status = 'OK'
     res.statusCode = 200
     res.json(userInfo)
   }

@@ -1,13 +1,10 @@
-import { Layout } from '../components/layout'
+import UserPage, { userInfoServerRequest } from '../components/UserPage'
+import { UserType } from '../mockDataBase'
 
-const Profile = () => {
-    return <>
-        <Layout>
-            <main className='main'>
-                <h1>Profile Page</h1>
-            </main>
-        </Layout>
-    </>
+const Profile = ({userInfo}: {userInfo: UserType | null}) => {
+    return <UserPage userInfo={userInfo} page='PROFILE' />
 }
+
+Profile.getInitialProps = userInfoServerRequest('PROFILE')
 
 export default Profile

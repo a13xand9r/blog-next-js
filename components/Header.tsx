@@ -2,9 +2,7 @@ import styles from '../styles/header.module.scss'
 import Image from 'next/image'
 import cn from 'classnames'
 import { useRouter } from 'next/router'
-import Link from 'next/link'
 import { memo } from 'react'
-// import homeIcon from '../public/homeIcon.png'
 
 export const Header: React.FC = memo(
     () => {
