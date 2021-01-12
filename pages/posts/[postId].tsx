@@ -16,15 +16,15 @@ const Post = ({ serverPost }: { serverPost: null | PostType }) => {
   }, [])
   post && post.status === 'ERROR' && router.push('/error')
   if (!post) {
-    return <Layout>Loading...</Layout>
+    return <>Loading...</>
   }
   return (
-    <Layout>
+    <>
       <main className='main'>
         <h2>{post.title}</h2>
         <div dangerouslySetInnerHTML={{ __html: post.body }} />
       </main>
-    </Layout>
+    </>
   )
 }
 

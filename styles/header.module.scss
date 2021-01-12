@@ -6,7 +6,16 @@
         justify-content: space-around;
         margin: 0 auto;
         width: 30%;
+        min-width: 200px;
         height: 100%;
+    }
+    &__logo{
+        display: inline-block;
+        position: absolute;
+        top: 4px;
+        width: 41px;
+        height: 41px;
+        margin-left: 10px;
     }
     &__home,&__users,&__profile,&__newPost {
         height: 100%;

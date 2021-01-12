@@ -18,12 +18,6 @@ p {
   box-sizing: border-box;
 }
 
-// .background_test{
-//   width: 100px;
-//   height: 100px;
-//   background-image: url('../public/homeIcon.png');
-// }
-
 .main{
   width: 40%;
   margin: 20px auto;
@@ -53,8 +47,6 @@ p {
   &__center{
     display: block;
     width: fit-content;
-    // max-width: 300px;
-    // display: inline-block;
     margin: 0 auto;
   }
 }

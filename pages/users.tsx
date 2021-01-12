@@ -20,21 +20,21 @@ const Users = ( {usersList}: {usersList: Array<UserType> | null} ) => {
     }
 
     if (!users) {
-        return <Layout>
+        return <>
             <main className='main'>
                 Loading...
             </main>
-        </Layout>
+        </>
     }
     return <>
-        <Layout>
+        <>
             <main className='main'>
                 {users.map(u => <div className='main__item blockItem' key={u.id} onClick={goToUserPage.bind(null, u.id)}>
                     <img className='blockItem__userPhoto' src={u.photo} alt="" />
                     <span>{u.name}</span>
                 </div>)}
             </main>
-        </Layout>
+        </>
     </>
 }
 

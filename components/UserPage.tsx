@@ -27,10 +27,10 @@ const UserPage = ({ userInfo, page }: PropsType) => {
         router.push(`/posts/${id}`)
     }
     if (!user) {
-        return <Layout>Loading...</Layout>
+        return <>Loading...</>
     }
     return (
-        <Layout>
+        <>
             <main className='main'>
                 <div className='main__userInfo'>
                     <h2 className='main__userName'>{user.name}</h2>
@@ -41,7 +41,7 @@ const UserPage = ({ userInfo, page }: PropsType) => {
                     <div className='blockItem__date'>{p.date}</div>
                 </div>) : <h3 className='main__center'>У {page === 'USER' ? 'пользователя' : 'Вас'} пока нет постов</h3>}
             </main>
-        </Layout>
+        </>
     )
 }
 

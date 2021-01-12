@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { Layout } from '../components/layout'
 
 const Error = () => {
-    return <Layout>
+    return <>
         <div className='main'>
             <h1 className='main__center'>Not found</h1>
             <div className='main__center'>
@@ -10,7 +10,7 @@ const Error = () => {
             </div>
         </div>
         {/* <img src={notFoundImg} alt=""/> */}
-    </Layout>
+    </>
 }
 
 export default Error
