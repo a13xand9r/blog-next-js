@@ -49,6 +49,11 @@ p {
     width: fit-content;
     margin: 0 auto;
   }
+  &__post img, video, iframe{
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+  }
 }
 .blockItem{
   position: relative;

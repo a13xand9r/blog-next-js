@@ -7,7 +7,7 @@ const Post = ({ serverPost }: { serverPost: null | PostType }) => {
   const [post, setPost] = useState<null | PostType>(serverPost)
   const router = useRouter()
   useEffect(() => {
-    let load = async () => {
+    const load = async () => {
       const res = await fetch(`http://localhost:3000/api/post?id=${router.query.postId}`)
       const data = await res.json()
       setPost(data)
@@ -16,13 +16,13 @@ const Post = ({ serverPost }: { serverPost: null | PostType }) => {
   }, [])
   post && post.status === 'ERROR' && router.push('/error')
   if (!post) {
-    return <>Loading...</>
+    return <main className='main'>Loading...</main>
   }
   return (
     <>
       <main className='main'>
         <h2>{post.title}</h2>
-        <div dangerouslySetInnerHTML={{ __html: post.body }} />
+        <div className='main__post' dangerouslySetInnerHTML={{ __html: post.body }} />
       </main>
     </>
   )

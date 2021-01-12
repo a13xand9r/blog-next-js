@@ -20,11 +20,7 @@ const Users = ( {usersList}: {usersList: Array<UserType> | null} ) => {
     }
 
     if (!users) {
-        return <>
-            <main className='main'>
-                Loading...
-            </main>
-        </>
+        return <main className='main'>Loading...</main>
     }
     return <>
         <>

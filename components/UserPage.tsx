@@ -10,7 +10,6 @@ type PropsType = {
 
 const UserPage = ({ userInfo, page }: PropsType) => {
     const [user, setUser] = useState<null | UserType>(userInfo)
-    const router = useRouter()
     useEffect(() => {
         let load = async () => {
             let res: Response
@@ -23,11 +22,12 @@ const UserPage = ({ userInfo, page }: PropsType) => {
         if (!userInfo) load()
         userInfo && userInfo.status === 'ERROR' && router.push('/error')
     }, [])
+    const router = useRouter()
     const goToPost = (id: string) => {
         router.push(`/posts/${id}`)
     }
     if (!user) {
-        return <>Loading...</>
+        return <main className='main'>Loading...</main>
     }
     return (
         <>
