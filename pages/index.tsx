@@ -1,11 +1,7 @@
-import Head from 'next/head'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useEffect, useReducer, useState } from 'react'
-import { Layout } from '../components/layout'
+import { useEffect, useState } from 'react'
+import { CustomHead } from '../components/CustomHead'
 import { PostType } from '../mockDataBase'
-import styles from '../styles/Home.module.css'
-import Post from './posts/[postId]'
 
 const Home = ({ serverPosts }: { serverPosts: Array<PostType> }) => {
   const [posts, setPosts] = useState<null | Array<PostType>>(serverPosts)
@@ -26,6 +22,7 @@ const Home = ({ serverPosts }: { serverPosts: Array<PostType> }) => {
   }
   return (
     <>
+      <CustomHead title='Home'/>
       <main className='main'>
         {posts.map(p => <div onClick={goToPost.bind(null, p.id)} className='main__item blockItem' key={p.id}>
           <h4>{p.title}</h4>

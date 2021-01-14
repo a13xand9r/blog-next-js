@@ -1,8 +1,9 @@
 import Image from 'next/image'
-import { Layout } from '../components/layout'
+import { CustomHead } from '../components/CustomHead'
 
 const Error = () => {
     return <>
+        <CustomHead title='404 Not Found'/>
         <div className='main'>
             <h1 className='main__center'>Not found</h1>
             <div className='main__center'>

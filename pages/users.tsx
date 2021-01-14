@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { Layout } from '../components/layout'
+import { CustomHead } from '../components/CustomHead'
 import { UserType } from '../mockDataBase'
 
 const Users = ( {usersList}: {usersList: Array<UserType> | null} ) => {
@@ -23,14 +23,13 @@ const Users = ( {usersList}: {usersList: Array<UserType> | null} ) => {
         return <main className='main'>Loading...</main>
     }
     return <>
-        <>
-            <main className='main'>
-                {users.map(u => <div className='main__item blockItem' key={u.id} onClick={goToUserPage.bind(null, u.id)}>
-                    <img className='blockItem__userPhoto' src={u.photo} alt="" />
-                    <span>{u.name}</span>
-                </div>)}
-            </main>
-        </>
+        <CustomHead title='Users'/>
+        <main className='main'>
+            {users.map(u => <div className='main__item blockItem' key={u.id} onClick={goToUserPage.bind(null, u.id)}>
+                <img className='blockItem__userPhoto' src={u.photo} alt="" />
+                <span>{u.name}</span>
+            </div>)}
+        </main>
     </>
 }
 

@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { Layout } from '../../components/layout'
+import { CustomHead } from '../../components/CustomHead'
 import { PostType } from '../../mockDataBase'
 
 const Post = ({ serverPost }: { serverPost: null | PostType }) => {
@@ -13,13 +13,14 @@ const Post = ({ serverPost }: { serverPost: null | PostType }) => {
       setPost(data)
     }
     if (!serverPost) load()
+    post && post.status === 'ERROR' && router.push('/error')
   }, [])
-  post && post.status === 'ERROR' && router.push('/error')
   if (!post) {
     return <main className='main'>Loading...</main>
   }
   return (
     <>
+      <CustomHead title={post.title}/>
       <main className='main'>
         <h2>{post.title}</h2>
         <div className='main__post' dangerouslySetInnerHTML={{ __html: post.body }} />
@@ -29,10 +30,10 @@ const Post = ({ serverPost }: { serverPost: null | PostType }) => {
 }
 
 Post.getInitialProps = async ({ req, query }) => {
-  if (!req) return { Post: null }
+  if (!req) return { serverPost: null }
   const res = await fetch(`http://localhost:3000/api/post?id=${query.postId}`)
-  const post = await res.json()
-  return { post }
+  const serverPost = await res.json()
+  return { serverPost }
 }
 
 export default Post

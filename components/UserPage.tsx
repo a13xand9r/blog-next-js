@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { UserType } from '../mockDataBase'
-import { Layout } from './layout'
+import { CustomHead } from './CustomHead'
 
 type PropsType = {
     userInfo: UserType | null
@@ -31,6 +31,7 @@ const UserPage = ({ userInfo, page }: PropsType) => {
     }
     return (
         <>
+            <CustomHead title={user.name} keywords='user page'/>
             <main className='main'>
                 <div className='main__userInfo'>
                     <h2 className='main__userName'>{user.name}</h2>

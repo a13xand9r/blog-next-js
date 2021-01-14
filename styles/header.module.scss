@@ -1,11 +1,13 @@
 .header{
     height: 50px;
     background-color: #fff4e1;
+    width: 100vw;
     &__wrapper{
         display: flex;
         justify-content: space-around;
         margin: 0 auto;
         width: 30%;
+        // width: 30%;
         min-width: 200px;
         height: 100%;
     }

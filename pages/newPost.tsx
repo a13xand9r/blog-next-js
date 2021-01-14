@@ -1,12 +1,11 @@
-import { Layout } from '../components/layout'
+import { CustomHead } from '../components/CustomHead'
 
 const NewPost = () => {
-    return<>
-        <>
-            <main className='main'>
+    return <>
+        <CustomHead title='Create New Post'/>
+        <main className='main'>
 
-            </main>
-        </>
+        </main>
     </>
 }
 
