@@ -61,6 +61,19 @@ p {
     display: block;
     margin-top: 15px;
   }
+  &__success{
+    position: absolute;
+    top: 40%;
+    left: 48%;
+    font-size: 36px;
+    visibility: hidden;
+    opacity: 0;
+    transition: 1s;
+  }
+  &__successVisible{
+    visibility: visible;
+    opacity: 1;
+  }
 }
 .blockItem{
   position: relative;

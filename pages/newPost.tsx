@@ -1,9 +1,13 @@
+import { useRouter } from 'next/router'
 import { FormEvent, useState } from 'react'
 import { CustomHead } from '../components/CustomHead'
+import { PostType } from '../mockDataBase'
 
 const NewPost = () => {
     const [postTitle, setPostTitle] = useState('')
     const [postBody, setPostBody] = useState('')
+    const [success, setSuccess] = useState(false)
+    const router = useRouter()
     const submitForm = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const post = {
@@ -11,12 +15,13 @@ const NewPost = () => {
             body: postBody
         }
         try {
-            await fetch(`http://localhost:3000/api/newPost`, {
+            const res = await fetch(`http://localhost:3000/api/newPost`, {
                 method: 'POST',
                 body: JSON.stringify(post)
             })
-            setPostTitle('')
-            setPostBody('')
+            const data: PostType = await res.json()
+            setSuccess(true)
+            setTimeout(() => router.push(`/posts/${data.id}`), 2000)
         } catch(e) {
             alert(e)
         }
@@ -24,6 +29,7 @@ const NewPost = () => {
     return <>
         <CustomHead title='Create New Post' />
         <main className='main'>
+            <div className={`main__success ${success && 'main__successVisible'}`}>Success</div>
             <form className='main__form newPostForm' onSubmit={submitForm}>
                 <label>
                     Post title:
