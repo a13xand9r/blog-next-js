@@ -54,6 +54,13 @@ p {
     display: block;
     margin: 0 auto;
   }
+  &__form{
+    width: 100%;
+  }
+  &__bodyLabel{
+    display: block;
+    margin-top: 15px;
+  }
 }
 .blockItem{
   position: relative;
@@ -75,5 +82,43 @@ p {
     width: 100px;
     height: 100px;
     border-radius: 50%;
+  }
+}
+
+.newPostForm{
+  &__inputTitle{
+    width: 100%;
+    height: 35px;
+    background-color: rgb(240, 240, 240);
+    outline: none;
+    border: none;
+    padding: 0px 10px;
+    border-radius: 8px;
+  }
+  &__inputBody{
+    resize: none;
+    width: 100%;
+    height: 500px;
+    padding: 10px;
+    background-color: rgb(240, 240, 240);
+    border: none;
+    outline: none;
+    border-radius: 8px;
+  }
+  &__button{
+    margin-top: 15px;
+    width: 100%;
+    height: 35px;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    background-color: rgb(255, 220, 168);
+    transition: 0.2s;
+  }
+  &__button:hover{
+    background-color: rgb(253, 207, 137);
+  }
+  &__button:active{
+    background-color: rgb(255, 184, 77);
   }
 }
