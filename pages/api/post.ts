@@ -1,13 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { PostType, users } from '../../mockDataBase'
+import { getPost } from '../../mockDataBase'
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'GET') {
-    let post: PostType
-    users.filter(u => u.posts).forEach(u => {
-        const p = u.posts.find(p => p.id === req.query.id)
-        if (p) post = p
-    })
+    let post = getPost(req.query.id as string)
     if (post) post.status = 'OK'
     else post = { status: 'ERROR' }
     res.statusCode = 200

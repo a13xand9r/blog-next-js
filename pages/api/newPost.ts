@@ -1,6 +1,6 @@
 import { v4 } from 'uuid'
 import { NextApiRequest, NextApiResponse } from 'next'
-import { PostType, users } from '../../mockDataBase'
+import { addPost, PostType } from '../../mockDataBase'
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
@@ -10,8 +10,7 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
         else return item
     }), '</p>'].join('').split(' ').filter(l => l !== '<p></p>').join(' ')
     console.log(post)
-    users[0].posts = [...users[0].posts, post]
-    console.log(users[0].posts)
+    addPost(post)
     res.statusCode = 200
     res.json(post)
   }
