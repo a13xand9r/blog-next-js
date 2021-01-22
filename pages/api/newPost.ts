@@ -4,7 +4,7 @@ import { addPost, PostType } from '../../mockDataBase'
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
-    const post: PostType = {...JSON.parse(req.body), date: new Date().toLocaleString(), id: Math.floor(Math.random() * 10000).toString()}
+    const post: PostType = {...JSON.parse(req.body), date: new Date().toLocaleString(), id: v4()}
     post.body = ['<p>', ...post.body.split('').map(item => {
         if (item === '\n') return '</p> <p>'
         else return item
