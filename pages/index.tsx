@@ -7,7 +7,7 @@ const Home = ({ serverPosts }: { serverPosts: Array<PostType> }) => {
   const [posts, setPosts] = useState<null | Array<PostType>>(serverPosts)
   useEffect(() => {
     const load = async () => {
-      const res = await fetch(`http://localhost:3000/api/home`)
+      const res = await fetch(`/api/home`)
       const data = await res.json()
       setPosts(data)
     }
@@ -35,7 +35,7 @@ const Home = ({ serverPosts }: { serverPosts: Array<PostType> }) => {
 
 Home.getInitialProps = async ({ req }) => {
   if (!req) return { Post: null }
-  const res = await fetch(`http://localhost:3000/api/home`)
+  const res = await fetch(`http://${req.headers.host}/api/home`)
   const post = await res.json()
   return { post }
 }

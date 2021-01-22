@@ -14,8 +14,8 @@ const UserPage = ({ userInfo, page }: PropsType) => {
         let load = async () => {
             let res: Response
             res = page === 'USER'
-                ? await fetch(`http://localhost:3000/api/user?id=${router.query.userId}`)
-                : await fetch(`http://localhost:3000/api/profile`)
+                ? await fetch(`/api/user?id=${router.query.userId}`)
+                : await fetch(`/api/profile`)
             const data = await res.json()
             setUser({ name: data.name, id: data.id, photo: data.photo, posts: data.posts })
         }
@@ -51,8 +51,8 @@ export const userInfoServerRequest = (page: 'USER' | 'PROFILE'): Function => {
         if (!req) return { userInfo: null }
         let res: Response
         res = page === 'USER'
-            ? await fetch(`http://localhost:3000/api/user?id=${query.userId}`)
-            : await fetch(`http://localhost:3000/api/profile`)
+            ? await fetch(`http://${req.headers.host}/api/user?id=${query.userId}`)
+            : await fetch(`http://${req.headers.host}/api/profile`)
         const userInfo = await res.json()
         return { userInfo }
     }

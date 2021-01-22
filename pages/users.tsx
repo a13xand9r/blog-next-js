@@ -8,7 +8,7 @@ const Users = ( {usersList}: {usersList: Array<UserType> | null} ) => {
 
     useEffect(() => {
         let load = async () => {
-            const res = await fetch('http://localhost:3000/api/users')
+            const res = await fetch('/api/users')
             const data = await res.json()
             setUsers(data)
         }
@@ -35,7 +35,7 @@ const Users = ( {usersList}: {usersList: Array<UserType> | null} ) => {
 
 Users.getInitialProps = async ({ req }) => {
     if (!req) return {usersList: null}
-    const res = await fetch('http://localhost:3000/api/users')
+    const res = await fetch(`http://${req.headers.host}/api/users`)
     const usersList = await res.json()
     return { usersList }
   }

@@ -78,7 +78,6 @@ export const getPost = (id: string): PostType => {
 }
 export const addPost = (post: PostType) => {
   users[0].posts = [...users[0].posts, post]
-  console.log(users[0].posts)
 }
 export const getAllPosts = (): Array<PostType> => {
   let posts = []

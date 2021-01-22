@@ -15,7 +15,7 @@ const NewPost = () => {
             body: postBody
         }
         try {
-            const res = await fetch(`http://localhost:3000/api/newPost`, {
+            const res = await fetch(`/api/newPost`, {
                 method: 'POST',
                 body: JSON.stringify(post)
             })

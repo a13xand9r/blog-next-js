@@ -8,7 +8,7 @@ const Post = ({ serverPost }: { serverPost: null | PostType }) => {
   const router = useRouter()
   useEffect(() => {
     const load = async () => {
-      const res = await fetch(`http://localhost:3000/api/post?id=${router.query.postId}`)
+      const res = await fetch(`/api/post?id=${router.query.postId}`)
       const data = await res.json()
       setPost(data)
     }
@@ -31,7 +31,7 @@ const Post = ({ serverPost }: { serverPost: null | PostType }) => {
 
 Post.getInitialProps = async ({ req, query }) => {
   if (!req) return { serverPost: null }
-  const res = await fetch(`http://localhost:3000/api/post?id=${query.postId}`)
+  const res = await fetch(`http://${req.headers.host}/api/post?id=${query.postId}`)
   const serverPost = await res.json()
   return { serverPost }
 }
