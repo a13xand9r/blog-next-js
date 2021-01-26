@@ -1,4 +1,7 @@
 .header{
+    position: fixed;
+    z-index: 1;
+    top: 0px;
     height: 50px;
     background-color: #fff4e1;
     width: 100vw;
@@ -7,7 +10,6 @@
         justify-content: space-around;
         margin: 0 auto;
         width: 30%;
-        // width: 30%;
         min-width: 200px;
         height: 100%;
     }
@@ -37,21 +39,8 @@
         transition: 0.3s;
         &:hover{
             transform: scale(1.1);
-            // background-color: #ffcd76;
         }
     }
-    // &__home div{
-    //     background-image: url('../public/homeIcon.png');
-    // }
-    // &__users div{
-    //     background-image: url('../public/usersIcon.png');
-    // }
-    // &__profile div{
-    //     background-image: url('../public/userIcon.png');
-    // }
-    // &__newPost div{
-    //     background-image: url('../public/newIcon.png');
-    // }
     &__choose::after{
         display: block;
         position: absolute;

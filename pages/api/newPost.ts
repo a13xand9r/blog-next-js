@@ -9,7 +9,6 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
         if (item === '\n') return '</p> <p>'
         else return item
     }), '</p>'].join('').split(' ').filter(l => l !== '<p></p>').join(' ')
-    console.log(post)
     addPost(post)
     res.statusCode = 200
     res.json(post)
