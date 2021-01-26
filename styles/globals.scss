@@ -4,6 +4,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  overflow-x: hidden;
 }
 
 a {
@@ -134,4 +135,16 @@ p {
   &__button:active{
     background-color: rgb(255, 184, 77);
   }
+}
+
+.bin{
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  transition: 0.2s;
+}
+.bin:hover{
+  transform: scale(1.1);
 }

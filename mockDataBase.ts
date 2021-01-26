@@ -1,4 +1,5 @@
 import { v4 } from 'uuid'
+const fs = require('fs')
 
 export let users = [
   {
@@ -59,29 +60,41 @@ export let users = [
   { id: '5', name: 'Dmitry', photo: 'https://i0.wp.com/ae01.alicdn.com/kf/Hbf1d79b78e684906a8c19ba53104bd009/2020-%D1%80%D0%BE%D1%81%D0%BA%D0%BE%D1%88%D0%BD%D1%8B%D0%B5-%D0%BA%D0%B2%D0%B0%D0%B4%D1%80%D0%B0%D1%82%D0%BD%D1%8B%D0%B5-%D0%BE%D0%BF%D1%80%D0%B0%D0%B2%D1%8B-%D0%B4%D0%BB%D1%8F-%D0%BE%D1%87%D0%BA%D0%BE%D0%B2-%D0%B4%D0%BB%D1%8F-%D0%BC%D1%83%D0%B6%D1%87%D0%B8%D0%BD-%D0%B8-%D0%B6%D0%B5%D0%BD%D1%89%D0%B8%D0%BD-%D1%82%D1%80%D0%B5%D0%BD%D0%B4%D0%BE%D0%B2%D1%8B%D0%B5-%D1%81%D1%82%D0%B8%D0%BB%D0%B8-UV400-%D0%BE%D0%BF%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5-%D0%BC%D0%BE%D0%B4%D0%BD%D1%8B%D0%B5-%D0%BE%D1%87%D0%BA%D0%B8.jpg', posts: null },
 ] as Array<UserType>
 
+const writeJSON = (usersData: Array<UserType>) => {
+  let data = JSON.stringify(usersData)
+  fs.writeFileSync('users.json', data)
+}
+
+const readJSON = () => {
+  let usersJSON = fs.readFileSync('users.json')
+  return JSON.parse(usersJSON)
+}
+
 export const getUsers = (): Array<UserType> => {
-  return users.map(u => ({ id: u.id, name: u.name, photo: u.photo }))
+  return readJSON().map(u => ({ id: u.id, name: u.name, photo: u.photo }))
 }
 export const getUser = (id: string): UserType => {
-  return users.find(u => u.id === id)
+  return readJSON().find(u => u.id === id)
 }
 export const getProfile = (): UserType => {
-  return users[0]
+  return readJSON()[0]
 }
 export const getPost = (id: string): PostType => {
   let post: PostType
-  users.filter(u => u.posts).forEach(u => {
+  readJSON().filter(u => u.posts).forEach(u => {
     const p = u.posts.find(p => p.id === id)
     if (p) post = p
   })
   return post
 }
 export const addPost = (post: PostType) => {
-  users[0].posts = [...users[0].posts, post]
+  let usersData = readJSON()
+  usersData[0].posts = [...users[0].posts, post]
+  writeJSON(usersData)
 }
 export const getAllPosts = (): Array<PostType> => {
   let posts = []
-  users.forEach(u => {
+  readJSON().forEach(u => {
     if (u.posts) posts = [...posts, ...u.posts]
   })
   return posts
