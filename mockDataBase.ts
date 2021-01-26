@@ -1,5 +1,4 @@
 import { v4 } from 'uuid'
-import './users.json'
 const fs = require('fs')
 
 export let users = [

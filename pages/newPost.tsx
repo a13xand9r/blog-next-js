@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { FormEvent, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { CustomHead } from '../components/CustomHead'
 import { PostType } from '../mockDataBase'
 
@@ -7,24 +7,31 @@ const NewPost = () => {
     const [postTitle, setPostTitle] = useState('')
     const [postBody, setPostBody] = useState('')
     const [success, setSuccess] = useState(false)
+    const [newPost, setNewPost] = useState<NewPostType | null>(null)
     const router = useRouter()
-    const submitForm = async (e: FormEvent<HTMLFormElement>) => {
+    useEffect(() => {
+        const sendPost = async () => {
+            try {
+                const res = await fetch(`/api/newPost`, {
+                    method: 'POST',
+                    body: JSON.stringify(newPost)
+                })
+                const data: PostType = await res.json()
+                setSuccess(true)
+                setTimeout(() => router.push(`/posts/${data.id}`), 2000)
+            } catch(e) {
+                alert(e)
+            }
+        }
+        newPost && sendPost()
+    }, [newPost])
+    const submitForm = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const post = {
             title: postTitle,
             body: postBody
         }
-        try {
-            const res = await fetch(`/api/newPost`, {
-                method: 'POST',
-                body: JSON.stringify(post)
-            })
-            const data: PostType = await res.json()
-            setSuccess(true)
-            setTimeout(() => router.push(`/posts/${data.id}`), 2000)
-        } catch(e) {
-            alert(e)
-        }
+        setNewPost(post)
     }
     return <>
         <CustomHead title='Create New Post' />
@@ -57,3 +64,8 @@ const NewPost = () => {
 }
 
 export default NewPost
+
+type NewPostType = {
+    title: string
+    body: string
+}
