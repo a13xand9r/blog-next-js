@@ -89,7 +89,7 @@ export const getPost = (id: string): PostType => {
 }
 export const addPost = (post: PostType) => {
   let usersData = readJSON()
-  usersData[0].posts = [...users[0].posts, post]
+  usersData[0].posts = [...usersData[0].posts, post]
   writeJSON(usersData)
 }
 export const getAllPosts = (): Array<PostType> => {
