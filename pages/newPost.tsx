@@ -1,12 +1,12 @@
 import { useRouter } from 'next/router'
-import { FormEvent, useEffect, useState } from 'react'
+import React, { FormEvent, useEffect, useState } from 'react'
 import { CustomHead } from '../components/CustomHead'
 import { PostType } from '../mockDataBase'
+import { CSSTransition } from 'react-transition-group'
 
 const NewPost = () => {
     const [postTitle, setPostTitle] = useState('')
     const [postBody, setPostBody] = useState('')
-    const [success, setSuccess] = useState(false)
     const [newPost, setNewPost] = useState<NewPostType | null>(null)
     const router = useRouter()
     useEffect(() => {
@@ -17,9 +17,10 @@ const NewPost = () => {
                     body: JSON.stringify(newPost)
                 })
                 const data: PostType = await res.json()
-                setSuccess(true)
-                setTimeout(() => router.push(`/posts/${data.id}`), 2000)
+                setTimeout(() => setNewPost(null), 1100)
+                setTimeout(() => router.push(`/posts/${data.id}`), 1500)
             } catch(e) {
+                setNewPost(null)
                 alert(e)
             }
         }
@@ -36,7 +37,9 @@ const NewPost = () => {
     return <>
         <CustomHead title='Create New Post' />
         <main className='main'>
-            <div className={`main__success ${success && 'main__successVisible'}`}>Success</div>
+            <CSSTransition in={newPost} timeout={200} classNames="loader" mountOnEnter unmountOnExit>
+                <div className='loader'></div>
+            </CSSTransition>
             <form className='main__form newPostForm' onSubmit={submitForm}>
                 <label>
                     Post title:
