@@ -9,7 +9,7 @@
         display: flex;
         justify-content: space-around;
         margin: 0 auto;
-        width: 30%;
+        max-width: 500px;
         min-width: 200px;
         height: 100%;
     }
@@ -20,6 +20,11 @@
         width: 41px;
         height: 41px;
         margin-left: 10px;
+    }
+    @media (max-width: 600px) {
+        &__logo{
+            display: none;
+        }
     }
     &__home,&__users,&__profile,&__newPost {
         height: 100%;
